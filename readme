@@ -1,0 +1,266 @@
+# AI Financial Research Agent
+
+An **Agentic AI-powered Financial Research System** that automates investment research by combining multiple financial data sources, AI planning, tool execution, memory, verification, and report generation.
+
+Built using **LangChain, Groq Llama 3.3, ChromaDB, Streamlit, Yahoo Finance, SEC EDGAR**, and a **Plan-and-Execute Agent Architecture**.
+
+---
+
+#  Features
+
+- Plan-and-Execute AI Agent Architecture
+- Company Profile Analysis
+- Financial Statement Analysis
+- Latest Financial News Retrieval
+- SEC Filing Analysis
+- Three Memory Systems
+  -Short-Term Memory
+  -Long-Term Memory (ChromaDB)
+  -Episodic Memory
+-AI-based Report Verification
+-Professional Investment Report Generation
+-Streamlit Web Interface
+-Automatic Report Storage
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                           User
+                             │
+                             ▼
+                 Financial Research Agent
+                             │
+        ┌────────────────────┴────────────────────┐
+        │                                         │
+        ▼                                         ▼
+ Planner Agent                          Memory System
+        │                     ┌──────────┼───────────┐
+        ▼                     ▼          ▼           ▼
+ Creates Execution Plan   Short-Term  Long-Term  Episodic
+        │                  Memory      Memory     Memory
+        ▼
+ Executor Agent
+        │
+        ▼
+ Tool Registry
+        │
+ ┌──────┼────────┬──────────────┬
+ ▼      ▼        ▼              ▼
+Company Financial  News      SEC Filing
+ Tool     Tool     Tool         Tool
+        │
+        ▼
+ Synthesizer Agent
+        │
+        ▼
+ Verifier Agent
+        │
+        ▼
+ Report Generator
+        │
+        ▼
+ Markdown Report
+        │
+        ▼
+ Streamlit Interface
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+FinancialResearchAgent/
+│
+├── agents/
+│   ├── planner.py
+│   ├── executor.py
+│   ├── synthesizer.py
+│   ├── verifier.py
+│   └── report_generator.py
+│
+├── tools/
+│   ├── base_tool.py
+│   ├── tool_registry.py
+│   ├── company_tool.py
+│   ├── financial_tool.py
+│   ├── news_tool.py
+│   └── sec_tool.py
+│
+├── memory/
+│   ├── short_term.py
+│   ├── long_term.py
+│   └── episodic.py
+│
+├── utils/
+│   ├── llm.py
+│   └── report_saver.py
+│
+├── reports/
+│
+├── tests/
+│
+├── app.py
+├── streamlit_app.py
+├── financial_agent.py
+├── config.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# ⚙️ Technology Stack
+
+| Category | Technology |
+|----------|------------|
+| Programming Language | Python |
+| LLM | Groq (Llama 3.3 70B) |
+| Agent Framework | LangChain |
+| Financial Data | Yahoo Finance |
+| News Retrieval | DuckDuckGo Search |
+| SEC Filings | SEC EDGAR |
+| Vector Database | ChromaDB |
+| Embeddings | Sentence Transformers |
+| Frontend | Streamlit |
+
+---
+
+# 🧠 Agent Workflow
+
+The system follows a **Plan-and-Execute** architecture.
+
+### Step 1 — Planner Agent
+
+The planner receives the user's research query and determines which tools are required.
+
+Example:
+
+```text
+Analyze Microsoft as an investment.
+```
+
+Planner Output:
+
+```python
+[
+    "company_profile",
+    "financial_data",
+    "news_search",
+    "sec_filings"
+]
+```
+
+---
+
+### Step 2 — Executor Agent
+
+The Executor calls the required tools through the Tool Registry.
+
+It gathers:
+
+- Company Profile
+- Financial Statements
+- Recent News
+- SEC Filings
+
+---
+
+### Step 3 — Memory System
+
+The retrieved information is managed using three memory components:
+
+### Short-Term Memory
+
+Stores information during the current research session.
+
+### Long-Term Memory
+
+Stores previous research reports using ChromaDB for semantic retrieval.
+
+### Episodic Memory
+
+Stores previous research sessions including:
+
+- Company
+- Query
+- Tools Used
+- Status
+- Timestamp
+
+---
+
+### Step 4 — Synthesizer
+
+Combines all retrieved information into a coherent investment analysis.
+
+---
+
+### Step 5 — Verifier
+
+Validates the synthesized report by checking:
+
+- Financial values
+- Company facts
+- Logical consistency
+
+It also reports confidence levels and highlights potential issues.
+
+---
+
+### Step 6 — Report Generator
+
+Generates a professional investment research report with sections including:
+
+- Executive Summary
+- Company Overview
+- Financial Performance
+- Recent Developments
+- Risks
+- Verification Summary
+- Final Conclusion
+
+---
+
+
+# Future Enhancements
+
+- Interactive Financial Charts
+- PDF Report Generation
+- Peer Company Comparison
+- Real-Time Stock Price Dashboard
+- Report Download (PDF/DOCX)
+- Advanced Semantic Search
+- Dark Mode Support
+- Cloud Deployment
+
+---
+
+# Learning Outcomes
+
+This project demonstrates practical implementation of:
+
+- Agentic AI Systems
+- Plan-and-Execute Architecture
+- Tool Calling
+- Retrieval-Augmented Memory
+- Vector Databases
+- Financial Data Integration
+- Modular Software Design
+- LLM-based Report Generation
+- AI Verification Pipelines
+- Streamlit Application Development
+
+---
+
+# Author
+
+**Konduri Sai Meghana**
+
+---
+
+# License
+
+This project is developed for educational and research purposes.
