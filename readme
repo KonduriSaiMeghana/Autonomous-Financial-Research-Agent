@@ -1,30 +1,34 @@
-# AI Financial Research Agent
+# 🤖 AI Financial Research Agent
 
-An **Agentic AI-powered Financial Research System** that automates investment research by combining multiple financial data sources, AI planning, tool execution, memory, verification, and report generation.
+An **Agentic AI-powered Financial Research System** that automates end-to-end investment research by orchestrating multiple AI agents, financial data sources, memory modules, and verification pipelines.
 
-Built using **LangChain, Groq Llama 3.3, ChromaDB, Streamlit, Yahoo Finance, SEC EDGAR**, and a **Plan-and-Execute Agent Architecture**.
+The system follows a **Plan-and-Execute Agent Architecture**, enabling autonomous financial analysis through intelligent planning, tool execution, memory retrieval, report verification, and professional report generation.
+
+Built using **Python, LangChain, Groq (Llama 3.3 70B), ChromaDB, Streamlit, Yahoo Finance, SEC EDGAR, and DuckDuckGo Search**.
 
 ---
 
-#  Features
+## 🚀 Features
 
-- Plan-and-Execute AI Agent Architecture
+- Autonomous Plan-and-Execute Agent Architecture
 - Company Profile Analysis
 - Financial Statement Analysis
 - Latest Financial News Retrieval
-- SEC Filing Analysis
-- Three Memory Systems
-  -Short-Term Memory
-  -Long-Term Memory (ChromaDB)
-  -Episodic Memory
--AI-based Report Verification
--Professional Investment Report Generation
--Streamlit Web Interface
--Automatic Report Storage
+- SEC Filing Analysis (SEC EDGAR)
+- Multi-Agent Workflow
+- Three-Level Memory System
+  - Short-Term Memory
+  - Long-Term Memory (ChromaDB)
+  - Episodic Memory
+- AI-Based Report Verification
+- Professional Investment Report Generation
+- Streamlit Web Interface
+- Automatic Report Storage
+- Modular and Extensible Architecture
 
 ---
 
-# 🏗️ System Architecture
+## 🏗️ System Architecture
 
 ```text
                            User
@@ -46,7 +50,7 @@ Built using **LangChain, Groq Llama 3.3, ChromaDB, Streamlit, Yahoo Finance, SEC
         ▼
  Tool Registry
         │
- ┌──────┼────────┬──────────────┬
+ ┌──────┼────────┬──────────────┬──────────────┐
  ▼      ▼        ▼              ▼
 Company Financial  News      SEC Filing
  Tool     Tool     Tool         Tool
@@ -69,7 +73,7 @@ Company Financial  News      SEC Filing
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 FinancialResearchAgent/
@@ -98,8 +102,10 @@ FinancialResearchAgent/
 │   ├── llm.py
 │   └── report_saver.py
 │
+├── data/
+├── evaluation/
+├── prompts/
 ├── reports/
-│
 ├── tests/
 │
 ├── app.py
@@ -107,15 +113,16 @@ FinancialResearchAgent/
 ├── financial_agent.py
 ├── config.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-# ⚙️ Technology Stack
+## ⚙️ Technology Stack
 
 | Category | Technology |
-|----------|------------|
+|-----------|------------|
 | Programming Language | Python |
 | LLM | Groq (Llama 3.3 70B) |
 | Agent Framework | LangChain |
@@ -128,21 +135,21 @@ FinancialResearchAgent/
 
 ---
 
-# 🧠 Agent Workflow
+## 🧠 Agent Workflow
 
-The system follows a **Plan-and-Execute** architecture.
+The system follows a **Plan-and-Execute** architecture to autonomously perform comprehensive financial research.
 
 ### Step 1 — Planner Agent
 
-The planner receives the user's research query and determines which tools are required.
+The Planner receives the user's research query and determines which tools are required.
 
-Example:
+**Example Query**
 
 ```text
 Analyze Microsoft as an investment.
 ```
 
-Planner Output:
+**Planner Output**
 
 ```python
 [
@@ -157,110 +164,195 @@ Planner Output:
 
 ### Step 2 — Executor Agent
 
-The Executor calls the required tools through the Tool Registry.
-
-It gathers:
+The Executor invokes the required tools through the Tool Registry and gathers information including:
 
 - Company Profile
 - Financial Statements
-- Recent News
+- Recent Financial News
 - SEC Filings
 
 ---
 
 ### Step 3 — Memory System
 
-The retrieved information is managed using three memory components:
+The retrieved information is managed through three complementary memory components.
 
-### Short-Term Memory
+#### Short-Term Memory
 
-Stores information during the current research session.
+Stores information generated during the current research session.
 
-### Long-Term Memory
+#### Long-Term Memory
 
-Stores previous research reports using ChromaDB for semantic retrieval.
+Uses ChromaDB to store previous research reports and enables semantic retrieval of historical analyses.
 
-### Episodic Memory
+#### Episodic Memory
 
-Stores previous research sessions including:
+Maintains records of previous research sessions, including:
 
-- Company
-- Query
+- Company Name
+- User Query
 - Tools Used
-- Status
+- Execution Status
 - Timestamp
 
 ---
 
-### Step 4 — Synthesizer
+### Step 4 — Synthesizer Agent
 
-Combines all retrieved information into a coherent investment analysis.
+The Synthesizer combines outputs from all tools into a coherent and comprehensive investment analysis.
 
 ---
 
-### Step 5 — Verifier
+### Step 5 — Verifier Agent
 
-Validates the synthesized report by checking:
+The Verifier evaluates the synthesized report by validating:
 
-- Financial values
+- Financial figures
 - Company facts
 - Logical consistency
+- Data completeness
 
-It also reports confidence levels and highlights potential issues.
+It also provides confidence scores and highlights potential inconsistencies.
 
 ---
 
 ### Step 6 — Report Generator
 
-Generates a professional investment research report with sections including:
+The final report is generated in a professional format containing sections such as:
 
 - Executive Summary
 - Company Overview
+- Business Analysis
 - Financial Performance
 - Recent Developments
-- Risks
+- Risk Assessment
 - Verification Summary
-- Final Conclusion
+- Investment Conclusion
+
+The report is automatically saved for future reference.
 
 ---
 
+## ▶️ Installation
 
-# Future Enhancements
+### Clone the repository
+
+```bash
+git clone <repository-url>
+cd FinancialResearchAgent
+```
+
+### Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+### Activate the virtual environment
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source venv/bin/activate
+```
+
+### Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Configure environment variables
+
+Create a `.env` file in the project root and add your API keys.
+
+Example:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+---
+
+## ▶️ Running the Project
+
+Run the Streamlit interface:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Or execute the application:
+
+```bash
+python app.py
+```
+
+---
+
+## 📊 Sample Workflow
+
+1. User enters a company name or research query.
+2. Planner Agent creates an execution plan.
+3. Executor Agent gathers company information.
+4. Memory modules retrieve and store relevant context.
+5. Synthesizer creates the investment analysis.
+6. Verifier validates the generated report.
+7. Report Generator creates the final report.
+8. Report is displayed through the Streamlit interface and stored locally.
+
+---
+
+## 🔮 Future Enhancements
 
 - Interactive Financial Charts
 - PDF Report Generation
+- DOCX Report Export
 - Peer Company Comparison
-- Real-Time Stock Price Dashboard
-- Report Download (PDF/DOCX)
+- Real-Time Stock Market Dashboard
+- Portfolio Recommendation Engine
 - Advanced Semantic Search
-- Dark Mode Support
+- Multi-LLM Support
 - Cloud Deployment
+- User Authentication
+- Dark Mode Interface
 
 ---
 
-# Learning Outcomes
+## 🎯 Learning Outcomes
 
 This project demonstrates practical implementation of:
 
 - Agentic AI Systems
 - Plan-and-Execute Architecture
-- Tool Calling
-- Retrieval-Augmented Memory
+- AI Tool Calling
+- Memory-Augmented AI Agents
 - Vector Databases
 - Financial Data Integration
-- Modular Software Design
-- LLM-based Report Generation
+- Retrieval-Augmented Memory
+- LLM-Based Report Generation
 - AI Verification Pipelines
+- Modular Software Engineering
 - Streamlit Application Development
 
 ---
 
-# Author
+## 👩‍💻 Author
 
 **Konduri Sai Meghana**
 
+B.Tech – Computer Science & Engineering (AI & Machine Learning)
+
 ---
 
-# License
+## 📄 License
 
-This project is developed for educational and research purposes.
+This project was developed for educational and research purposes.
+
+All trademarks, company names, financial data sources, and APIs belong to their respective owners.
